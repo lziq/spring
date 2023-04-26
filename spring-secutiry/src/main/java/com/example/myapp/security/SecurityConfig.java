@@ -15,38 +15,50 @@ import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfig {
-    @Bean
-    public InMemoryUserDetailsManager userDetailsManager(){
-        UserDetails john = User.builder()
-                .username("john")
-                .password("{noop}test123")
-                .roles("student")
-                .build();
-
-        return new InMemoryUserDetailsManager(john);
-    }
-
 //    @Bean
-//    public UserDetailsManager userDetailsManager(DataSource dataSource){
-//        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager((dataSource));
-//        jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?");
-//        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT username, authority FROM authorities WHERE username=?");
+//    public InMemoryUserDetailsManager userDetailsManager(){
+//        UserDetails john = User.builder()
+//                .username("john")
+//                .password("{noop}test123")
+//                .roles("employee")
+//                .build();
 //
-//        return jdbcUserDetailsManager;
+//        UserDetails mary = User.builder()
+//                .username("mary")
+//                .password("{noop}test123")
+//                .roles("employee", "manager")
+//                .build();
 //
-//        //return new JdbcUserDetailsManager(dataSource);
+//        return new InMemoryUserDetailsManager(john, mary);
 //    }
 
     @Bean
+    public UserDetailsManager userDetailsManager(DataSource dataSource) {
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager((dataSource));
+        jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username=?;");
+        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT username, authority FROM authorities WHERE username=?");
+
+        return jdbcUserDetailsManager;
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests( configurer ->
-                configurer
-                        .requestMatchers(HttpMethod.GET, "members").hasRole("student")
-                        .requestMatchers(HttpMethod.GET, "members/**").hasRole("student")
-                        .requestMatchers(HttpMethod.PUT, "members").hasRole("manager")
-                        .requestMatchers(HttpMethod.POST, "members").hasRole("manager")
-                        .requestMatchers(HttpMethod.DELETE, "members/**").hasRole("admin")
-        );
+        http.authorizeHttpRequests()
+                .requestMatchers("/").hasRole("EMPLOYEE")
+                .requestMatchers("/leader/**").hasRole("MANAGER")
+                .requestMatchers("/access-denied").permitAll()
+                .and()
+                .formLogin()
+                .loginPage("/login") // Redirect all requests to this url if not authenticated yet
+                .loginProcessingUrl("/authenticateTheUser") // Create a servlet with url "/authenticateTheUser" for authentication request
+                .defaultSuccessUrl("/") // Redirect to this url once login is successful
+                .permitAll()
+                .and()
+                .logout() // Create a servlet with url "/logout" by default for logout request
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/access-denied");
 
         http.httpBasic();
 
