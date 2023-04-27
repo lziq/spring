@@ -12,11 +12,11 @@ A snippet of code executed at a certain time. Kinds of advice are before advice,
 
 4. What is a join point?
 
-Generally, a join point represents a specific point in the execution of a program where an aspect can "join" in and apply some additional functionality. In Spring AOP, it represents a method execution.
+Generally, a join point represents a specific point in the execution of a program where an aspect can "join" in and apply some additional functionality. In Spring AOP, the java class `JoinPoint` represents a method execution. 
 
 5. What is a point cut?
 
-A point cut is predicate expression to check where the advice should be applied. In Spring AOP, a point cut expression can be applied to multiple methods and multiple point cuts can be combined.
+A point cut is predicate expression to check where the advice should be applied. In Spring AOP, a point cut expression can be a expression matching methods or custom annocations. Multiple point cuts can be combined.
 
 6. How does code injection work in spring aop?
 
