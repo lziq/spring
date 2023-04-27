@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e50db6de-3f89-42ce-8245-40f57410bbcf" name="Changes" comment="" />
+    <list default="true" id="e50db6de-3f89-42ce-8245-40f57410bbcf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,7 +36,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/ziqili/spring/spring/spring-mvc-hibernete",
+    "last_opened_file_path": "/Users/ziqili/spring/spring/spring-crud",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -51,6 +54,13 @@
   <component name="RunManager" selected="Spring Boot.ThymeleafdemoApplication">
     <configuration name="ThymeleafdemoApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="spring-mvc-hibernete" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.luv2code.springboot.thymeleafdemo.ThymeleafdemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ThymeleafdemoApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="spring-crud" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.luv2code.springboot.thymeleafdemo.ThymeleafdemoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -75,6 +85,7 @@
       <workItem from="1682057845832" duration="668000" />
       <workItem from="1682359881350" duration="10000" />
       <workItem from="1682556022816" duration="1155000" />
+      <workItem from="1682562608609" duration="3416000" />
     </task>
     <servers />
   </component>
