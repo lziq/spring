@@ -19,7 +19,7 @@ Hibernate is a framework which maps java classes (called entities) to tables in 
 
 5. What is Spring data (DAO layer)? 
 
-Spring data provides API to execute common queries on Hibernate entities. For example, `findAll()` selects all the records of the entity in database. 
+Spring data provides API to execute common queries on Hibernate entities. For example, `findAll()` selects all the records of the entity in database. Additionally, it provides free controllers for these API. 
 
 6. What is the service layer? 
 
