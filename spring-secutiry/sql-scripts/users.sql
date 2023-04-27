@@ -1,7 +1,7 @@
-DROP DATABASE  IF EXISTS `web_customer_tracker`;
+DROP DATABASE  IF EXISTS `demo_db`;
 
-CREATE DATABASE  IF NOT EXISTS `web_customer_tracker`;
-USE `web_customer_tracker`;
+CREATE DATABASE  IF NOT EXISTS `demo_db`;
+USE `demo_db`;
 
 --
 -- Table structure for table `users`
