@@ -12,13 +12,45 @@ Username/password, token, OAuth2, etc. In this project, we are using username an
 
 A session is activated when users successfully login using username and password. In later requests, the web browser will cover it automatically so web server recognizes it and don't ask users to repeatedly authenticate. Sessions can be configured in spring security.
 
-4. What is Cross-Site Request Forgery (CSRF)?
+4. What is Cross-Site Request Forgery (CSRF) attack?
 
 When a user authenticates successfully in one website A and browses another malicious website B, the website B may trick the user to send requests to the website A using the current session.
 
 5. What is a CSRF token?
 
 CSRF token is used to solve the CSRF attack problem. When a user authenticates successfully with the web server, the web server sends a CSRF token to the user, and the user must include the token in any form submission request later. Since browsers don't include CSRF token automatically in requests, it is much harder for attackers to get it and put it in malicious requests. Spring security and Thymeleaf handles CSRF token sending and receiving automatically, so developers don't need to be aware of it.
+
+6. What is SQL injection attack? 
+
+Let’s assume we want to fetch a user’s data from the users table.
+
+```
+public List
+  getUserByUserId(String userId)
+  throws SQLException {
+    String sql = "select "
+      + "first_name,last_name,username "
+      + "from users where userid = '"
+      + userId 
+      + "'";
+    Connection c = dataSource.getConnection();
+    ResultSet rs = c.createStatement().executeQuery(sql);
+}
+```
+
+If we want to fetch data for a user with id=20, the resulting SQL query will look like this:
+
+```
+select first_name,last_name,username from users where userId = 20 ;
+```
+
+This is a valid SQL query that will produce the expected output. However, if an attacker is able to provide the input of `20' OR '1'='1` and we run the code as is, the resulting SQL query will become as follows:
+
+```
+select first_name,last_name,username from users where userId = 20  or '1'='1';
+```
+
+Which will leak information on all the users. 
 
 6. What is the flow for login?
 
